@@ -11,8 +11,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "antd": "^5.10.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "styled-components": "^6.0.8"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
@@ -28,6 +30,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
     "eslint-plugin-simple-import-sort": "^10.0.0",
+    "jest-styled-components": "^7.1.1",
     "pre-commit": "^1.2.2",
     "prettier": "^3.0.3",
     "typescript": "^5.0.2",
