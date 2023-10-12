@@ -3,8 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
+    "format": "prettier --write \"src/**/*.tsx\"",
     "build": "tsc && vite build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "eslint ./src --ext .jsx,.js,.ts,.tsx --fix --ignore-path ./.gitignore --max-warnings=0",
+    "lint:format": "prettier  --loglevel warn --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\" ",
+    "lint": "npm run lint:format && npm run lint:fix ",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -29,5 +32,6 @@
     "prettier": "^3.0.3",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
-  }
+  },
+  "pre-commit": "lint"
 }
