@@ -19,10 +19,10 @@ export const LogoImage = styled.img``;
 
 export const ContainerLogin = styled.div`
   display: flex;
-  padding: 22px;
   align-items: center;
   justify-content: center;
   background-color: #d9d9d9;
+  padding: 22px;
   width: 100%;
   height: 100vh;
   max-width: 646px;
@@ -33,4 +33,5 @@ export const LimitedCotainer = styled.div`
   max-width: 498px;
   display: flex;
   justify-content: center;
+  flex-direction: column;
 `;
