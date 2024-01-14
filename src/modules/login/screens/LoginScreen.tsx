@@ -1,9 +1,9 @@
-import axios from "axios";
 import React, { useState } from "react";
 
-import Button from "../../../shared/buttons/button/Button";
-import SVGLogo from "../../../shared/icons /SVGLogo";
-import Input from "../../../shared/inputs/input/Input";
+import Button from "../../../shared/components/buttons/button/Button";
+import SVGLogo from "../../../shared/components/icons /SVGLogo";
+import Input from "../../../shared/components/inputs/input/Input";
+import { useRequests } from "../../../shared/hooks/useRequests";
 import {
   BackgroundImage,
   ContainerLogin,
@@ -15,6 +15,7 @@ import {
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { postRequest, loading } = useRequests();
   const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
   };
@@ -22,23 +23,11 @@ const LoginScreen = () => {
     setPassword(event.target.value);
   };
 
-  const handleLogin = async () => {
-    const returnObject = await axios({
-      method: "POST",
-      url: "http://localhost:3000/auth",
-      data: {
-        email: "root@root.com",
-        password: "abc",
-      },
-    })
-      .then((result) => {
-        alert(`${result.data.accessToken}`);
-        return result;
-      })
-      .catch(() => {
-        alert(`usuario ou senha invalida`);
-      });
-    console.log("returnObject", returnObject);
+  const handleLogin = () => {
+    postRequest("http://localhost:3000/auth", {
+      email,
+      password,
+    });
   };
   return (
     <ContainerLoginScreen>
@@ -62,6 +51,7 @@ const LoginScreen = () => {
             type="password"
           />
           <Button
+            loading={loading}
             type="primary"
             margin="64px 0px 16px 0px"
             onClick={handleLogin}
