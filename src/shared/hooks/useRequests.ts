@@ -31,15 +31,19 @@ export const useRequests = () => {
    * @param body
    * @returns
    */
-  const postRequest = async (url: string, body: unknown) => {
+  const postRequest = async <T>(
+    url: string,
+    body: unknown,
+  ): Promise<T | undefined> => {
     setLoadding(true);
-    const returnData = await connectionAPIPost(url, body)
+    const returnData = await connectionAPIPost<T>(url, body)
       .then((result) => {
         setNotification("Senha válida", "success");
         return result;
       })
       .catch((error: Error) => {
         setNotification(error.message, "error");
+        return undefined;
       });
     setLoadding(false);
     return returnData;
