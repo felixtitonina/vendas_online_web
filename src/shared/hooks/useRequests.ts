@@ -31,7 +31,6 @@ export const useRequests = () => {
    * @param body
    * @returns
    */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const postRequest = async (url: string, body: unknown) => {
     setLoadding(true);
     const returnData = await connectionAPIPost(url, body)
