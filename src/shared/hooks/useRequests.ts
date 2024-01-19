@@ -1,11 +1,20 @@
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
+import { AuthType } from "../../modules/login/types/AuthType";
+import { ProductRoutesEnum } from "../../modules/product/routes";
+import { ERROR_INVALID_PASSWORD } from "../constants/errosStatus";
+import { URL_AUTH } from "../constants/urls";
+import { setAuthorizationToken } from "../functions/connection/auth";
 import { connectionAPIPost } from "../functions/connection/connectionAPI";
 import { useGlobalContext } from "./useGlobalContext";
 
 export const useRequests = () => {
   const [loading, setLoadding] = useState(false);
+
+  const navigate = useNavigate();
+
   const { setNotification } = useGlobalContext();
 
   const getRequest = async (url: string) => {
@@ -26,7 +35,7 @@ export const useRequests = () => {
   };
 
   /**
-   *
+   *2
    * @param url
    * @param body
    * @returns
@@ -39,6 +48,7 @@ export const useRequests = () => {
     const returnData = await connectionAPIPost<T>(url, body)
       .then((result) => {
         setNotification("Senha válida", "success");
+        navigate(ProductRoutesEnum.PRODUCT);
         return result;
       })
       .catch((error: Error) => {
@@ -49,9 +59,25 @@ export const useRequests = () => {
     return returnData;
   };
 
+  const authRequest = async (body: unknown): Promise<void> => {
+    setLoadding(true);
+    await connectionAPIPost<AuthType>(URL_AUTH, body)
+      .then((result) => {
+        // setNotification("Senha válida", "success");
+        navigate(ProductRoutesEnum.PRODUCT);
+        setAuthorizationToken(result.accessToken);
+        return result;
+      })
+      .catch(() => {
+        setNotification(ERROR_INVALID_PASSWORD, "error");
+        return undefined;
+      });
+    setLoadding(false);
+  };
   return {
     loading,
     getRequest,
     postRequest,
+    authRequest,
   };
 };
