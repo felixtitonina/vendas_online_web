@@ -15,7 +15,7 @@ export const useRequests = () => {
 
   const navigate = useNavigate();
 
-  const { setNotification } = useGlobalContext();
+  const { setNotification, setUser } = useGlobalContext();
 
   const getRequest = async (url: string) => {
     setLoadding(true);
@@ -63,9 +63,9 @@ export const useRequests = () => {
     setLoadding(true);
     await connectionAPIPost<AuthType>(URL_AUTH, body)
       .then((result) => {
-        // setNotification("Senha válida", "success");
-        navigate(ProductRoutesEnum.PRODUCT);
+        setUser(result.user);
         setAuthorizationToken(result.accessToken);
+        navigate(ProductRoutesEnum.PRODUCT);
         return result;
       })
       .catch(() => {
