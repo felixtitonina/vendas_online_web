@@ -46,31 +46,6 @@ export const useRequests = () => {
     return returnObject;
   };
 
-  /**
-   *2
-   * @param url
-   * @param body
-   * @returns
-   */
-  const postRequest = async <T>(
-    url: string,
-    body: unknown,
-  ): Promise<T | undefined> => {
-    setLoadding(true);
-    const returnData = await connectionAPIPost<T>(url, body)
-      .then((result) => {
-        setNotification("Senha válida", "success");
-        navigate(ProductRoutesEnum.PRODUCT);
-        return result;
-      })
-      .catch((error: Error) => {
-        setNotification(error.message, "error");
-        return undefined;
-      });
-    setLoadding(false);
-    return returnData;
-  };
-
   const authRequest = async (body: unknown): Promise<void> => {
     setLoadding(true);
     await connectionAPIPost<AuthType>(URL_AUTH, body)
@@ -89,7 +64,6 @@ export const useRequests = () => {
   return {
     loading,
     request,
-    postRequest,
     authRequest,
   };
 };
