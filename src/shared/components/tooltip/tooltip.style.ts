@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const ContainerTooltip = styled.div`
   position: relative;
+
   :hover {
     div {
       display: block;
