@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import Button from "../../../shared/components/buttons/button/Button";
 import SVGLogo from "../../../shared/components/icons /SVGLogo";

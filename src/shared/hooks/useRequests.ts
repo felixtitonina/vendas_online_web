@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
+// import { useNavigate } from "react-router-dom";
 import { AuthType } from "../../modules/login/types/AuthType";
-import { ProductRoutesEnum } from "../../modules/product/routes";
+// import { ProductRoutesEnum } from "../../modules/product/routes";
 import { ERROR_INVALID_PASSWORD } from "../constants/errosStatus";
 import { URL_AUTH } from "../constants/urls";
 import { setAuthorizationToken } from "../functions/connection/auth";
@@ -13,7 +13,7 @@ import ConnectionAPI, {
 import { useGlobalContext } from "./useGlobalContext";
 
 export const useRequests = () => {
-  const [loading, setLoadding] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const { setNotification, setUser } = useGlobalContext();
 
@@ -23,7 +23,7 @@ export const useRequests = () => {
     saveGlobal?: (object: T) => void,
     body?: unknown,
   ): Promise<T | undefined> => {
-    setLoadding(true);
+    setLoading(true);
 
     const returnObject: T | undefined = await ConnectionAPI.connect<T>(
       url,
@@ -40,25 +40,26 @@ export const useRequests = () => {
         setNotification(error.message, "error");
         return undefined;
       });
-    setLoadding(false);
+    setLoading(false);
     return returnObject;
   };
 
   const authRequest = async (body: unknown): Promise<void> => {
-    const navigate = useNavigate();
-    setLoadding(true);
+    // const navigate = useNavigate();
+    setLoading(true);
     await connectionAPIPost<AuthType>(URL_AUTH, body)
       .then((result) => {
         setUser(result.user);
         setAuthorizationToken(result.accessToken);
-        navigate(ProductRoutesEnum.PRODUCT);
+        // navigate(ProductRoutesEnum.PRODUCT);
+        location.href = "/product";
         return result;
       })
       .catch(() => {
         setNotification(ERROR_INVALID_PASSWORD, "error");
         return undefined;
       });
-    setLoadding(false);
+    setLoading(false);
   };
   return {
     loading,

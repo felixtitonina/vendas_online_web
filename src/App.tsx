@@ -31,9 +31,11 @@ function App() {
   const { contextHolder } = useNotification();
   const { setUser } = useGlobalContext();
   const { request } = useRequests();
+
   useEffect(() => {
     request(URL_USER, MethodsEnum.GET, setUser);
   }, []);
+
   return (
     <>
       {contextHolder}
