@@ -15,8 +15,6 @@ import { useGlobalContext } from "./useGlobalContext";
 export const useRequests = () => {
   const [loading, setLoadding] = useState(false);
 
-  const navigate = useNavigate();
-
   const { setNotification, setUser } = useGlobalContext();
 
   const request = async <T>(
@@ -47,6 +45,7 @@ export const useRequests = () => {
   };
 
   const authRequest = async (body: unknown): Promise<void> => {
+    const navigate = useNavigate();
     setLoadding(true);
     await connectionAPIPost<AuthType>(URL_AUTH, body)
       .then((result) => {
