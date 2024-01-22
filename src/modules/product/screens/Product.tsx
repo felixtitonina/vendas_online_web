@@ -13,7 +13,7 @@ import { useRequests } from "../../../shared/hooks/useRequests";
 import { ProductType } from "../../../shared/types/ProductType";
 import CategoryColumn from "../components/CategoryColumn";
 import TooltipImage from "../components/TooltipImage";
-import { ProductRoutesEnum } from "../routes";
+import { ProductRoutesEnum } from "../enums/productRoutes.enum";
 
 const columns: TableProps<ProductType>["columns"] = [
   {
@@ -55,17 +55,17 @@ const Product = () => {
     navigate(ProductRoutesEnum.PRODUCT_INSERT);
   };
 
+  const listBreadcrumb = [
+    {
+      name: "HOME",
+    },
+    {
+      name: "PRODUTOS",
+    },
+  ];
+
   return (
-    <Screen
-      listBreadcrumb={[
-        {
-          name: "HOME",
-        },
-        {
-          name: "PRODUTOS",
-        },
-      ]}
-    >
+    <Screen listBreadcrumb={listBreadcrumb}>
       <Button onClick={handleOnClickInsert}>Inserir</Button>
       <Table columns={columns} dataSource={products} />;
     </Screen>

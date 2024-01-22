@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useGlobalContext } from "../../../shared/hooks/useGlobalContext";
-import { ProductRoutesEnum } from "../../product/routes";
+import { ProductRoutesEnum } from "../../product/enums/productRoutes.enum";
 
 const FirstScreen = () => {
   const { user } = useGlobalContext();
