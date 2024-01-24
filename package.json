@@ -2,7 +2,7 @@
   "name": "vendas-online-web",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "start": "vite",
     "format": "prettier --write \"src/**/*.tsx\"",
     "build": "tsc && vite build",
     "lint:fix": "eslint ./src --ext .jsx,.js,.ts,.tsx --fix --ignore-path ./.gitignore --max-warnings=0",

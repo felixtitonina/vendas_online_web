@@ -34,6 +34,12 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
 export const useGlobalContext = () => {
   const { globalData, setGlobalData } = useContext(GlobalContext);
 
+  /**
+   *
+   * @param message
+   * @param type  NotificationType "success" | "info" | "warning" | "error"
+   * @param description
+   */
   const setNotification = (
     message: string,
     type: NotificationType,
