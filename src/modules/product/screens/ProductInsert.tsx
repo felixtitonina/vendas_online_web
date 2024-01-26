@@ -60,6 +60,9 @@ const ProductInsert = () => {
   const handleOnClickCancel = () => {
     navigate(ProductRoutesEnum.PRODUCT);
   };
+  const handleOnClickCancel = () => {
+    navigate(ProductRoutesEnum.PRODUCT);
+  };
 
   const onChange = (
     event: React.ChangeEvent<HTMLInputElement>,
