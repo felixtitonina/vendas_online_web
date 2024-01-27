@@ -52,7 +52,7 @@ export const useRequests = () => {
         setUser(result.user);
         setAuthorizationToken(result.accessToken);
         // navigate(ProductRoutesEnum.PRODUCT);
-        location.href = "/product";
+        location.href = "/";
         return result;
       })
       .catch(() => {
