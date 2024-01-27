@@ -6,6 +6,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
+import { categoryScreens } from "./modules/category/routes";
 import { firstScreenRoutes } from "./modules/firstScreen/routes";
 import { loginRoutes } from "./modules/login/routes";
 import { productScreen } from "./modules/product/routes";
@@ -22,6 +23,7 @@ import { useRequests } from "./shared/hooks/useRequests";
 const routes: RouteObject[] = [...loginRoutes];
 const routesLoggedIn: RouteObject[] = [
   ...productScreen,
+  ...categoryScreens,
   ...firstScreenRoutes,
 ].map((route) => ({
   ...route,
