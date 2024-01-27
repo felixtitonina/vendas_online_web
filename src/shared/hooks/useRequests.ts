@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { NavigateFunction } from "react-router-dom";
 
+import { FirstRoutesEnum } from "../../modules/firstScreen/routes";
 // import { useNavigate } from "react-router-dom";
 import { AuthType } from "../../modules/login/types/AuthType";
 // import { ProductRoutesEnum } from "../../modules/product/routes";
@@ -44,7 +46,10 @@ export const useRequests = () => {
     return returnObject;
   };
 
-  const authRequest = async (body: unknown): Promise<void> => {
+  const authRequest = async (
+    navigate: NavigateFunction,
+    body: unknown,
+  ): Promise<void> => {
     // const navigate = useNavigate();
     setLoading(true);
     await connectionAPIPost<AuthType>(URL_AUTH, body)
@@ -52,7 +57,7 @@ export const useRequests = () => {
         setUser(result.user);
         setAuthorizationToken(result.accessToken);
         // navigate(ProductRoutesEnum.PRODUCT);
-        location.href = "/";
+        navigate(FirstRoutesEnum.FIRST_SCREEN);
         return result;
       })
       .catch(() => {
