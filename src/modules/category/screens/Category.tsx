@@ -43,23 +43,20 @@ const listBreadcrumb = [
 ];
 
 const Category = () => {
-  const { categories } = useCategory();
+  const { categories, handleOnChangeShearch } = useCategory();
   const navigate = useNavigate();
 
   const handleOnClickCategory = () => {
     navigate(CategoryRoutesEnum.CATEGORY_INSERT);
   };
 
-  const handleOnSearch = (value: string) => {
-    console.log(value);
-  };
   return (
     <Screen listBreadcrumb={listBreadcrumb}>
       <DisplayFlexJustifyBetween margin="0px 0px 16px 0px">
         <LimitedContainer width={240}>
           <Search
             placeholder="Buscar categoria"
-            onSearch={handleOnSearch}
+            onSearch={handleOnChangeShearch}
             enterButton
           />
         </LimitedContainer>

@@ -12,7 +12,7 @@ import { CategoryRoutesEnum } from "../enums/categoryRoutes.enum";
 import { useInsertCategory } from "../hooks/useInsertCategory";
 
 const CategoryInsert = () => {
-  const { name, loading, handleOnChangeName, insertCategory } =
+  const { name, loading, handleOnChangeName, disabledButton, insertCategory } =
     useInsertCategory();
   const navigate = useNavigate();
 
@@ -50,7 +50,12 @@ const CategoryInsert = () => {
               </Button>
             </LimitedContainer>
             <LimitedContainer margin="8px 8px" width={160}>
-              <Button loading={loading} onClick={insertCategory} type="primary">
+              <Button
+                disabled={disabledButton}
+                loading={loading}
+                onClick={insertCategory}
+                type="primary"
+              >
                 Inserir categoria
               </Button>
             </LimitedContainer>
