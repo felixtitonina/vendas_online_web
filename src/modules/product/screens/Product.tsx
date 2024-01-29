@@ -11,9 +11,9 @@ import Table from "../../../shared/components/table/Table";
 import { URL_PRODUCT } from "../../../shared/constants/urls";
 import { MethodsEnum } from "../../../shared/enums/methods.enum";
 import { convertNumberToMoney } from "../../../shared/functions/money";
-import { useDataContext } from "../../../shared/hooks/useDataContext";
 import { useRequests } from "../../../shared/hooks/useRequests";
 import { ProductType } from "../../../shared/types/ProductType";
+import { useProducerReducer } from "../../../store/reducers/productReducer/useProductReducer";
 import CategoryColumn from "../components/CategoryColumn";
 import TooltipImage from "../components/TooltipImage";
 import { ProductRoutesEnum } from "../enums/productRoutes.enum";
@@ -48,7 +48,7 @@ const columns: TableProps<ProductType>["columns"] = [
 ];
 
 const Product = () => {
-  const { products, setProducts } = useDataContext();
+  const { products, setProducts } = useProducerReducer();
   const [productsFiltered, setProductsFiltered] = useState<ProductType[]>([]);
   const { request } = useRequests();
   const navigate = useNavigate();
